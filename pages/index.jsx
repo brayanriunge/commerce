@@ -1,17 +1,23 @@
 import React, { useEffect, useState } from "react";
 import ProductCard from "@/components/ProductCard";
 import { Col, Container, Form, InputGroup, Row } from "react-bootstrap";
+import Image from "next/image";
+import { METHODS } from "http";
 
-function Home() {
+export default function Home() {
   const [searchInput, setSearchInput] = useState("");
   const [productData, setProductData] = useState([]);
 
+  const options = {
+    method: "GET",
+  };
+
   //Fetching product data from API using fetch and the useEffect Hook and displaying them
   useEffect(() => {
-    fetch("http://localhost:3000/products")
+    fetch("http://localhost:3000/products", options)
       .then((r) => r.json())
-      .then((json) => {
-        setProductData(json); //Updating the state of product data to the fetched product array
+      .then((result) => {
+        setProductData(result); //Updating the state of product data to the fetched product array
         console.log(productData);
       });
   }, []); //Empty dependencies array to fetch the data only once
@@ -31,7 +37,7 @@ function Home() {
           </InputGroup>
         </Col>
         {/**Using search filter to filter the displayed products */}
-        {/* <SearchFilter
+        {/* <SearchFilternpx json-server db.json
           value={searchInput}
           data={productData}
           renderResults={(results) => (
@@ -43,8 +49,16 @@ function Home() {
           )}
         /> */}
       </Row>
+      {productData.map((product) => {
+        <div className="flex items-center justify-between gap-4 flex-col bg-white">
+          <div key={product.id}>
+            <div>
+              <Image src={product.Image} height={40} width={20} />
+            </div>
+            <div>Title: {product.title}</div>
+          </div>
+        </div>;
+      })}
     </Container>
   );
 }
-
-export default Home;
