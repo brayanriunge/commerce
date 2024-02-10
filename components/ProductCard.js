@@ -1,15 +1,11 @@
 import React from "react";
 import { Button, Card } from "react-bootstrap";
-import { useThemeHook } from "../GlobalComponents/ThemeProvider";
-import { useCart } from "react-use-cart";
-import { BsCartPlus } from "react-icons/bs";
-import { Link } from "@reach/router";
 
 function ProductCard(props) {
   let { image, price, title, id } = props.data;
 
   //Using useState hook to hold and update the states of variables
-  const [theme] = useThemeHook();
+
   const { addItem } = useCart();
 
   function addToCart() {
@@ -17,12 +13,7 @@ function ProductCard(props) {
   }
 
   return (
-    <Card
-      style={{ width: "18rem", height: "auto" }}
-      className={`${
-        theme ? "bg-black text-light" : "bg-light text-black"
-      }text-center p-0 overload-hidden shadow mx-auto mb-4`}
-    >
+    <Card style={{ width: "18rem", height: "auto" }}>
       <Link to={`/product-details/${id}`}>
         <div
           style={{
@@ -40,11 +31,7 @@ function ProductCard(props) {
           </div>
         </div>
       </Link>
-      <Card.Body
-        className={`${
-          theme ? "bg-light-black text-light" : "bg-light text-black"
-        }`}
-      >
+      <Card.Body>
         <Card.Title
           style={{
             textOverflow: "ellipsis",
@@ -57,12 +44,7 @@ function ProductCard(props) {
         <Card.Title>
           Ksh. <span className="h3">{price}</span>
         </Card.Title>
-        <Button
-          onClick={() => addToCart()}
-          className={`${
-            theme ? "bg-dark-primary text-black" : "bg-light-primary"
-          }d-flex align-item-center m-auto border-0`}
-        >
+        <Button onClick={() => addToCart()}>
           <BsCartPlus size="1.8rem" />
           Add to Cart
         </Button>
