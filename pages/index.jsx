@@ -49,16 +49,24 @@ export default function Home() {
           )}
         /> */}
       </Row>
-      {productData.map((product) => {
-        <div className="flex items-center justify-between gap-4 flex-col bg-white">
-          <div key={product.id}>
-            <div>
-              <Image src={product.Image} height={40} width={20} />
-            </div>
-            <div>Title: {product.title}</div>
+      {productData.map((product) => (
+        <div
+          className="grid items-center justify-between gap-4 grid-col-4 bg-white"
+          key={product.id}
+        >
+          <div>
+            <Image
+              src={product.image}
+              height={40}
+              width={20}
+              alt={product.category}
+            />
           </div>
-        </div>;
-      })}
+          <h1 className="text 2xl font-bold text-gray-700">
+            Title: {product.title}
+          </h1>
+        </div>
+      ))}
     </Container>
   );
 }
