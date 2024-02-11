@@ -22,7 +22,7 @@ function ProductCard(props) {
   // }
 
   return (
-    <section>
+    <section className="grid grid-flow-row">
       {products.map((product) => (
         <Card style={{ width: "18rem", height: "auto" }}>
           <div

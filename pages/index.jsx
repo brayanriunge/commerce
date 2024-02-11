@@ -51,7 +51,7 @@ export default function Home() {
       </Row>
       {productData.map((product) => (
         <div
-          className="grid items-center justify-between gap-4 grid-col-4 bg-white"
+          className="grid items-center justify-between gap-4 grid-row-4 bg-white"
           key={product.id}
         >
           <div>
